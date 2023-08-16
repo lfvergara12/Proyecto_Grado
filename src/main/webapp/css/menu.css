@@ -1,0 +1,25 @@
+/* Estilos para centrar el menú en la mitad de la pantalla */
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ajusta la altura del menú según tu preferencia */
+}
+
+.menu-section {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.menu-section h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.menu-section select {
+    width: 200px;
+    height: 30px;
+    font-size: 14px;
+}

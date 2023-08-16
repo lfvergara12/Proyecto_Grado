@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="conexionA.DBUtil, conexionA.User, conexionA.UserController" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,37 +48,32 @@
                   </div>
                </div>
                <div class="login_form">
-                  <form action="UserController" method="post">
-                     <input type="hidden" name="action" value="login">
-                     <fieldset>
-                        <div class="field">
-                           <label class="label_field">Email Address</label>
-                           <input type="email" name="email" placeholder="E-mail" required />
-                        </div>
-                        <div class="field">
-                           <label class="label_field">Password</label>
-                           <input type="password" name="password" placeholder="Password" required />
-                        </div>
-                        <div class="field">
-                           <label class="label_field hidden">hidden label</label>
-                           <label class="form-check-label"><input type="checkbox" class="form-check-input"> Remember Me</label>
-                           <a class="forgot" href="">Forgotten Password?</a>
-                        </div>
-                        <div class="field margin_0">
-                           <label class="label_field hidden">hidden label</label>
-                           <button class="main_bt" style="margin-left:10%;">Iniciar Sesión</button>
-                        </div>
-                        <div class="field margin_0">
-                           <label class="label_field hidden">hidden label</label>
-                           <button class="main_bt" style="margin-left:40%;">Registrarse</button>
-                        </div>
-                     </fieldset> 
-                  </form>
-               </div>
-               <a href="loginAdmin.html" style="margin-left:75%;">Login Admin</a>
-               <% if (request.getAttribute("error") != null) { %>
-                   <p>Error: <%= request.getAttribute("error") %></p>
-               <% } %>
+                  <h2>Registro de Usuario</h2>
+                  <br>
+    <form action="UserController" method="post">
+        <input type="hidden" name="action" value="register">
+        
+        <label>Nombre:</label>
+        <input type="text" name="nombre" required><br><br>
+        
+        <label>Apellido:</label>
+        <input type="text" name="apellido" required><br><br>
+        
+        <label>Email:</label>
+        <input type="email" name="email" required><br><br>
+        
+        <label>Usuario:</label>
+        <input type="text" name="usuario" required><br><br>
+        
+        <label>Contraseña:</label>
+        <input type="password" name="password" required><br><br>
+        
+        <input type="submit" value="Registrarse">
+    </form>
+    
+    <% if (request.getAttribute("error") != null) { %>
+        <p>Error: <%= request.getAttribute("error") %></p>
+    <% } %>
             </div>
          </div>
       </div>

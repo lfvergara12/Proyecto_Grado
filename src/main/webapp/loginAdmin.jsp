@@ -48,7 +48,7 @@
                </div>
                <div class="login_form">
                   <form action="UserController" method="post">
-                     <input type="hidden" name="action" value="login">
+                     <input type="hidden" name="action" value="loginAdmin">
                      <fieldset>
                         <div class="field">
                            <label class="label_field">Email Address</label>
@@ -60,7 +60,6 @@
                         </div>
                         <div class="field">
                            <label class="label_field hidden">hidden label</label>
-                           <label class="form-check-label"><input type="checkbox" class="form-check-input"> Remember Me</label>
                            <a class="forgot" href="">Forgotten Password?</a>
                         </div>
                         <div class="field margin_0">
@@ -69,12 +68,10 @@
                         </div>
                         <div class="field margin_0">
                            <label class="label_field hidden">hidden label</label>
-                           <button class="main_bt" style="margin-left:40%;">Registrarse</button>
                         </div>
                      </fieldset> 
                   </form>
                </div>
-               <a href="loginAdmin.html" style="margin-left:75%;">Login Admin</a>
                <% if (request.getAttribute("error") != null) { %>
                    <p>Error: <%= request.getAttribute("error") %></p>
                <% } %>

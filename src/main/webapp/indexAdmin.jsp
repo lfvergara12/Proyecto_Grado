@@ -1,3 +1,6 @@
+<%@ page import="java.sql.Connection, java.sql.Statement, java.sql.ResultSet, java.sql.SQLException" %>
+<%@ page import="conexionA.DBUtil" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -51,7 +54,9 @@
                      <div class="user_profle_side">
                         <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg" alt="#" /></div>
                         <div class="user_info">
-                           <h6>John David</h6>
+                         <% String nombre = (String) request.getSession().getAttribute("nombre");
+                         out.print(nombre);
+							%>
                            <p><span class="online_animation"></span> Online</p>
                         </div>
                      </div>
@@ -70,7 +75,7 @@
                      
 <!--                   </ul> -->
 					<ul class="list-unstyled components">
-					  <li class="active"><a href="#"><i class="fa fa-table purple_color2"></i><span>Tabla de Usuarios</span></a></li>
+					  <li class="active"><a href="users.jsp"><i class="fa fa-table purple_color2"></i><span>Tabla de Usuarios</span></a></li>
 					  <li ><a href="indexAdmin2.html" ><i class="fa fa-briefcase blue1_color"></i><span>Registros por prueba</span></a></li>
 					  <li><a href="indexAdmin3.html" ><i class="fa fa-bar-chart-o green_color"></i> <span>Listado de pruebas</span></a></li>
 					  <li><a href="indexAdmin4.html" ><i class="fa fa-briefcase blue1_color"></i><span>Subir archivos</span></a></li>
@@ -96,7 +101,7 @@
 	                                 		<a class="dropdown-toggle" data-toggle="dropdown">
 											   <img class="img-responsive rounded-circle" src="images/layout_img/user_img.jpg" alt="#" />
 											   <span class="name_user">
-											      <% String nombre = (String) request.getSession().getAttribute("nombre");
+											      <% 
 											         out.print(nombre); %>
 											   </span>
 											</a> 
@@ -104,7 +109,7 @@
                                        <a class="dropdown-item" href="profile.html">My Profile</a>
                                        <a class="dropdown-item" href="settings.html">Settings</a>
                                        <a class="dropdown-item" href="help.html">Help</a>
-                                       <a class="dropdown-item" href="#"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
+                                       <a class="dropdown-item" href="login.jsp"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
                                     </div>
                                  </li>
                               </ul>
@@ -129,20 +134,64 @@
 
   <div class="counter_no" >
   <div class="container">
-       <h1 class="title-proyect">Tabla de usuarios</h1>
-        <div class="create-element">
-            <input type="text" class="nombre" placeholder="Nombre">
-            <input type="email" class="correo" placeholder="Correo:">
-            <button class="btn create">Crear</button>
-        </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                
-                </tr>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Usuarios</title>
+</head>
+<body>
+    <h1>Lista de Usuarios</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% 
+            try (Connection connection = DBUtil.getConnection()) {
+                String sql = "SELECT * FROM usuarios";
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(sql);
+
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    nombre = resultSet.getString("nombre");
+                    String apellido = resultSet.getString("apellido");
+                    String email = resultSet.getString("email");
+            %>
+            <tr>
+                <td><%= nombre %></td>
+                <td><%= apellido %></td>
+                <td><%= email %></td>
+                <td>
+                    <a href="UserController?action=editUser&id=<%= id %>">Editar</a>
+                    <form action="UserController" method="post">
+                        <input type="hidden" name="action" value="deleteUser">
+                        <input type="hidden" name="id" value="<%= id %>">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            <% 
+                }
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            %>
+        </tbody>
+    </table>
+    
+    <a href="crearUsuario.jsp">Crear Usuario</a>
+</body>
+</html>
+
             </thead>
             <tbody class="table-content">
             </tbody>

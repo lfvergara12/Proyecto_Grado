@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,21 +61,17 @@
                         </div>
                         <div class="field">
                            <label class="label_field hidden">hidden label</label>
-                           <label class="form-check-label"><input type="checkbox" class="form-check-input"> Remember Me</label>
                            <a class="forgot" href="">Forgotten Password?</a>
                         </div>
                         <div class="field margin_0">
                            <label class="label_field hidden">hidden label</label>
                            <button class="main_bt" style="margin-left:10%;">Iniciar Sesión</button>
                         </div>
-                        <div class="field margin_0">
-                           <label class="label_field hidden">hidden label</label>
-                           <button class="main_bt" style="margin-left:40%;">Registrarse</button>
-                        </div>
                      </fieldset> 
                   </form>
                </div>
-               <a href="loginAdmin.html" style="margin-left:75%;">Login Admin</a>
+               <a href="register.jsp" style="margin-left:75%;">Contactenos</a>
+               <a href="loginAdmin.jsp" style="margin-left:75%;">Login Admin</a>
                <% if (request.getAttribute("error") != null) { %>
                    <p>Error: <%= request.getAttribute("error") %></p>
                <% } %>
