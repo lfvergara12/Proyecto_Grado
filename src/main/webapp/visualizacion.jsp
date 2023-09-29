@@ -178,82 +178,14 @@
                               <div class="counter_no">
                                  <div>
                                     <p class="head_couter">
-                                    <head>
-                                        <style>
-        /* Estilos para centrar el formulario */
-       body, html {
-            height: 100%;
-            margin: 0;
-        }
-
-        .container-fluid {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
+<div>
+    <h1>Resultado de la Consulta</h1>
+    <p><%= request.getAttribute("resultadoTexto") %></p>
     
+    <!-- Agrega un enlace para descargar el PDF -->
+<a href="Download?rutaPDF=<%= request.getAttribute("rutaPDF") %>&nombrePDF=<%= request.getAttribute("nombrePDF") %>">Descargar PDF</a>
+</div>
 
-        form {
-            width: 100%; /* Opcional: para que el formulario ocupe todo el ancho */
-            max-width: 400px; /* Ancho máximo del formulario */
-            padding: 20px;
-            border: 1px solid #ccc;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .menu-section {
-            margin-bottom: 20px;
-        }
-
-        /* Agrega más estilos personalizados según sea necesario */
-    </style>
-    </head>
-    <body class="dashboard dashboard_1">
-    <!-- Contenido del formulario -->
-    <div class="container-fluid">
-<form action="ConsultaServlet" method="post">
-
-    <div class="menu-section">
-    
-        <h3>Tipo de Análisis</h3>
-        <select id="selectTipoAnalisis" name="selectTipoAnalisis">
-            <option value="">Seleccionar Análisis</option>
-            <option value="descriptivo">Análisis Descriptivo</option>
-            <option value="predictivo">Análisis Predictivo</option>
-        </select>
-    </div>
-    
-    <div class="menu-section">
-        <h3>Año</h3>
-        <select id="selectAnio" name="selectAnio">
-            <option value="">Seleccionar Año</option>
-            <option value="2017">2017</option>
-            <option value="2018">2018</option>
-            <option value="2019">2019</option>
-            <option value="2020">2020</option>
-            <option value="2021">2021</option>
-            <!-- Agrega más opciones de año si es necesario -->
-        </select>
-    </div>
-    
-    <div class="menu-section">
-        <h3>Región</h3>
-        <select id="selectRegion" name="selectRegion">
-            <option value="">Seleccionar Región</option>
-            <option value="amazonica">Amazonica</option>
-            <option value="orinoquia">Orinoquia</option>
-            <option value="caribe">Caribe</option>
-            <option value="pacifica">Pacifica</option>
-            <option value="andina">Andina</option>
-            <!-- Agrega más opciones de región si es necesario -->
-        </select>
-    </div>
-    
-    <!-- Botón Consultar -->
-<button id="btnConsultar">Consultar</button>
-</form>
       <!-- jQuery -->
       <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
       <script src="js/script.js"></script>

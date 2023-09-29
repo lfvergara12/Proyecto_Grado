@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src/main/java"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-19">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
@@ -12,5 +12,27 @@
 	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/javax.mail.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/activation.jar/activation.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/postgresql-42.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/JSON-java-master/JSON-java-master/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/json-simple-1.1.jar/json-simple-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/OneDrive/Escritorio/Proyect_Grado/src/main/webapp/WEB-INF/lib/gson-2.9.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/jstl-1.2.jar/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/standard.jar/standard.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/jar_files/httpclient-4.5.13.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/jar_files/httpcore-4.4.13.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/jar_files/ion-java-1.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/jar_files/jackson-annotations-2.12.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/jar_files/jackson-core-2.12.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/jar_files/jackson-databind-2.12.7.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/jar_files/jackson-dataformat-cbor-2.12.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/jar_files/jmespath-java-1.12.557.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/jar_files/joda-time-2.8.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/jar_files/aws-java-sdk-core-1.12.557.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/jar_files/aws-java-sdk-kms-1.12.557.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/jar_files/aws-java-sdk-s3-1.12.557.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/aws-java-sdk-1.12.560-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/aws-java-sdk-1.12.560-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/aws-java-sdk-1.12.560.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/s3-transfer-manager-2.20.156.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Usuario/Downloads/aws-java-sdk-s3-1.12.559.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

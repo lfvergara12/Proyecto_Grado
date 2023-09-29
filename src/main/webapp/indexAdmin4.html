@@ -1,4 +1,6 @@
+
 <!DOCTYPE html>
+
 <html lang="en">
    <head>
       <!-- basic -->
@@ -128,16 +130,51 @@
 <div class="row">
     <div class="col-md-10 col-md-offset-1 ">
     <center><h2>Adjunte los archivos</h2></center>
-  </div>
- 
-  <div class="col-md-10 col-md-offset-1 dropfile">
-    
-              <form method="POST" action="upload.php" enctype="multipart/form-data"><br>
-                    <input type="file" name="file[]" multiple><br>
-                    <input class="btn btn-success upl" type="submit" value="Subir Archivos">
-                </form>
-  </div>
-</div>
+    <form action="/tu_servlet_url" method="POST" enctype="multipart/form-data">
+    <div class="menu-section">
+        <h3>Tipo de Análisis</h3>
+        <select id="selectTipoAnalisis" name="selectTipoAnalisis">
+            <option value="">Seleccionar Análisis</option>
+            <option value="descriptivo">Análisis Descriptivo</option>
+            <option value="predictivo">Análisis Predictivo</option>
+        </select>
+    </div>
+
+    <div class="menu-section">
+        <h3>Año</h3>
+        <select id="selectAnio" name="selectAnio">
+            <option value="">Seleccionar Año</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <!-- Agrega más opciones de año si es necesario -->
+        </select>
+    </div>
+
+    <div class="menu-section">
+        <h3>Región</h3>
+        <select id="selectRegion" name="selectRegion">
+            <option value="">Seleccionar Región</option>
+            <option value="amazonica">Amazonica</option>
+            <option value="orinoquia">Orinoquia</option>
+            <option value="caribe">Caribe</option>
+            <option value="pacifica">Pacifica</option>
+            <option value="andina">Andina</option>
+            <!-- Agrega más opciones de región si es necesario -->
+        </select>
+    </div>
+
+    <div class="menu-section">
+        <h3>Archivo PDF</h3>
+        <input type="file" id="inputFile" name="inputFile">
+    </div>
+
+    <!-- Botón Agregar -->
+    <button id="btnAgregar" value="Agregar">Agregar</button>
+</form>
+
   </div>
 </div>
                    

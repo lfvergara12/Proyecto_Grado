@@ -1,5 +1,5 @@
 package conexionA;
-
+import java.io.PrintWriter;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,6 +24,7 @@ public class UserController extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
 
+
         if (action.equals("register")) {
             registerUser(request, response);
         } else if (action.equals("login")) {
@@ -32,13 +33,12 @@ public class UserController extends HttpServlet {
             loginAdmin(request, response);
         } else if (action.equals("deleteUser")) {
             deleteUser(request, response);
-        } else if (action.equals("editUser")) {
-            editUser(request, response);
         } else if (action.equals("createUser")) {
             createUser(request, response);
-        }
-
-       
+        }else if (action.equals("editUser")) {
+                editUser(request, response);
+        } 
+      
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -84,6 +84,7 @@ private void showEditForm(HttpServletRequest request, HttpServletResponse respon
         // Manejar el error de la base de datos si es necesario
     }
 }
+
     private void registerUser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String nombre = request.getParameter("nombre");
@@ -155,6 +156,7 @@ private void showEditForm(HttpServletRequest request, HttpServletResponse respon
         }
     }
 
+    
     private void loginUser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	String email = request.getParameter("email");
@@ -299,4 +301,5 @@ private void showEditForm(HttpServletRequest request, HttpServletResponse respon
     }
 
 }
+
 
