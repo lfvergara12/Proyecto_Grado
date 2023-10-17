@@ -1,11 +1,13 @@
 package conexionA;
+
+
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,17 +16,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.RequestDispatcher;
 
-@WebServlet("/ConsultaServlet")
-public class ConsultaServlet extends HttpServlet {
+@WebServlet("/ConsultaS")
+public class ConsultaS extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         // Obtén los parámetros del formulario
-        String tipoAnalisis = request.getParameter("selectTipoAnalisis");
+        String grado = request.getParameter("selectGrado");
         String anio = request.getParameter("selectAnio");
-        String region = request.getParameter("selectRegion");
 
         // Configura la respuesta HTTP
         response.setContentType("text/html");
@@ -34,31 +35,28 @@ public class ConsultaServlet extends HttpServlet {
             // Establecer la conexión a la base de datos utilizando DBUtil
             Connection connection = DBUtil.getConnection();
 
-            // Consulta SQL para obtener el resultado_texto en función de los parámetros
-            String sql = "SELECT resultado_texto,ruta_pdf,nombrepdf FROM consultas WHERE tipo_analisis = ? AND anio = ? AND region = ?";
+            // Consulta SQL para obtener el resultado_texto en función de grado y año
+            String sql = "SELECT resultado_texto, rutapdf, nombrepdf FROM informe_icfes WHERE grado = ? AND anio = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, tipoAnalisis);
+            statement.setString(1, grado);
             statement.setString(2, anio);
-            statement.setString(3, region);
             ResultSet result = statement.executeQuery();
 
             // Verificar si se encontraron resultados
             if (result.next()) {
                 String resultadoTexto = result.getString("resultado_texto");
-                String rutaPDF = result.getString("ruta_pdf");
+                String rutaPDF = result.getString("rutapdf");
                 String nombrePDF = result.getString("nombrepdf");
 
-                // Redirigir a visualizacionPDF.jsp con el resultado
+                // Redirigir a visualizacion.jsp con el resultado
                 request.setAttribute("resultadoTexto", resultadoTexto);
                 request.setAttribute("rutaPDF", rutaPDF);
                 request.setAttribute("nombrePDF", nombrePDF);
-                System.out.println("HOLA");
-                System.out.println(rutaPDF);
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("visualizacion.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("visualizacionD.jsp");
                 dispatcher.forward(request, response);
 
-            }  else {
+            } else {
                 // Mostrar un mensaje de alerta en lugar de redirigir a una página
                 response.setContentType("text/html");
                 out.println("<html>");
@@ -66,7 +64,7 @@ public class ConsultaServlet extends HttpServlet {
                 out.println("<body>");
                 out.println("<script type=\"text/javascript\">");
                 out.println("alert('No se encontraron resultados.');");
-                out.println("window.location.href = 'index.jsp';"); // Redirige a la página anterior
+                out.println("window.location.href = 'pruebas.jsp';"); // Redirige a la página anterior
                 out.println("</script>");
                 out.println("</body>");
                 out.println("</html>");
@@ -78,15 +76,13 @@ public class ConsultaServlet extends HttpServlet {
             out.println("<html>");
             out.println("<head><title>Error</title></head>");
             out.println("<body>");
-            
             out.println("<script type=\"text/javascript\">");
-            out.println("alert('Error base de datos.');");
-            out.println("window.location.href = 'index.jsp';"); // Redirige a la página anterior
+            out.println("alert('Error de base de datos.');");
+            out.println("window.location.href = 'pruebas.jsp';"); // Redirige a la página anterior
             out.println("</script>");
             out.println("</body>");
             out.println("</html>");
         }
     }
 }
-
 

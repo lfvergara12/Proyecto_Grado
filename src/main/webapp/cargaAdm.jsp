@@ -129,85 +129,69 @@
                   </div>
                </div>
 
- 
+<div class="counter_no">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <h2 style="text-align: center; font-family: Arial, sans-serif; font-size: 24px; color: #007bff;">Adjunte los archivos</h2>
+                <br>
+                <form action="CargaAdmin" method="POST" enctype="multipart/form-data" style="background-color: #f5f5f5; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
+                    <div class="menu-section" style="margin-bottom: 10px;">
+                        <h2 style="text-align: center; font-family: Arial, sans-serif; font-size: 24px;">Tipo de Análisis</h2>
+                        <br>
+                        <select id="selectTipoAnalisis" name="selectTipoAnalisis" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 20px;">
+                            <option value="">Seleccionar Análisis</option>
+                            <option value="descriptivo">Análisis Descriptivo</option>
+                            <option value="predictivo">Análisis Predictivo</option>
+                        </select>
+                    </div>
 
+                    <div class="menu-section" style="margin-bottom: 10px;">
+                        <h2 style="text-align: center; font-family: Arial, sans-serif; font-size: 24px;">Año</h2>
+                        <br>
+                        <select id="selectAnio" name="selectAnio" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 20px;">
+                            <option value="">Seleccionar Año</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <!-- Agrega más opciones de año si es necesario -->
+                        </select>
+                    </div>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Lista de Usuarios</title>
-</head>
-<body>
-    <div style="max-width: 700px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; border: 1px solid #ccc; border-radius: 5px;">
-        <h1 style="text-align: center;">Lista de Usuarios</h1>
-        
-        <table style="width: 100%; border-collapse: collapse;">
-            <thead>
-                <tr>
-                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Nombre</th>
-                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Apellido</th>
-                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Email</th>
-                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Usuario</th>
-                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% 
-                try (Connection connection = DBUtil.getConnection()) {
-                    String sql = "SELECT * FROM usuarios";
-                    Statement statement = connection.createStatement();
-                    ResultSet resultSet = statement.executeQuery(sql);
+                    <div class="menu-section" style="margin-bottom: 10px;">
+                        <h2 style="text-align: center; font-family: Arial, sans-serif; font-size: 24px;">Región</h2>
+                        <br>
+                        <select id="selectRegion" name="selectRegion" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 20px;">
+                            <option value="">Seleccionar Región</option>
+                            <option value="amazonica">Amazónica</option>
+                            <option value="orinoquia">Orinoquía</option>
+                            <option value="caribe">Caribe</option>
+                            <option value="pacifica">Pacífica</option>
+                            <option value="andina">Andina</option>
+                            <!-- Agrega más opciones de región si es necesario -->
+                        </select>
+                    </div>
 
-                    while (resultSet.next()) {
-                        int id = resultSet.getInt("id");
-                        nombre = resultSet.getString("nombre");
-                        String apellido = resultSet.getString("apellido");
-                        String usuario = resultSet.getString("usuario");
-                        String email = resultSet.getString("email");
-                %>
-                <tr>
-                    <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><%= nombre %></td>
-                    <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><%= apellido %></td>
-                    <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><%= email %></td>
-                    <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><%= usuario %></td>
-                    <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">
-                        <a href="UserController?action=editUser&id=<%= id %>" style="text-decoration: none; color: #007bff;">Editar</a>
-                        <form action="UserController" method="post" style="display: inline;">
-                            <input type="hidden" name="action" value="deleteUser">
-                            <input type="hidden" name="id" value="<%= id %>">
-                            <button type="submit" style="background-color: #dc3545; color: #fff; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer;">Eliminar</button>
-                        </form>
-                    </td>
-                </tr>
-                <% 
-                    }
-                    resultSet.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                %>
-            </tbody>
-        </table>
-        
-        <a href="crearUsuario.jsp" style="display: block; margin-top: 10px; text-align: center; color: #007bff;">Crear Usuario</a>
+                    <div class="menu-section" style="margin-bottom: 10px;">
+                        <h2 style="text-align: center; font-family: Arial, sans-serif; font-size: 24px;">Archivo PDF</h2>
+                        <br>
+                        <input type="file" id="inputFile" name="inputFile" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 20px;">
+                    </div>
+
+                    <!-- Estilo para centrar y hacer el botón azul -->
+                    <div style="text-align: center;">
+                        <button id="btnAgregar" style="font-family: Arial, sans-serif; background-color: #007bff; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Agregar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-</body>
-
-
-            </thead>
-            <tbody class="table-content">
-            </tbody>
-        </table>
-        <div class="pagination">
-            <ul></ul>
-        </div>
-        <div class="container-popup-messages">
-            
-        </div>
-  </div>
 </div>
 
-                    <script src="dinamico.js"></script>
-                    <script src="script.js"></script>
+
                    
 
 
@@ -219,15 +203,7 @@
        <script src="app.js"></script>
       <!-- wow animation -->
       <script src="js/animate.js"></script>
-      <!-- select country -->
-      <script src="js/bootstrap-select.js"></script>
-      <!-- owl carousel -->
-      <script src="js/owl.carousel.js"></script> 
-      <!-- chart js -->
-      <script src="js/Chart.min.js"></script>
-      <script src="js/Chart.bundle.min.js"></script>
-      <script src="js/utils.js"></script>
-      <script src="js/analyser.js"></script>
+   
       <!-- nice scrollbar -->
       <script src="js/perfect-scrollbar.min.js"></script>
       <script>
