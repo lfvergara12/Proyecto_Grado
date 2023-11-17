@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
    <!-- basic -->
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
    <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <!-- mobile metas -->
@@ -58,14 +59,18 @@
                            <label class="label_field">Password</label>
                            <input type="password" name="password" placeholder="Password" required />
                         </div>
-                        <div class="field">
-                           <label class="label_field hidden">hidden label</label>
-                           <a class="forgot" href="">Forgotten Password?</a>
-                        </div>
+                        <br>
+                        <br>
                         <div class="field margin_0">
-                           <label class="label_field hidden">hidden label</label>
-                           <button class="main_bt" style="margin-left:10%;">Iniciar Sesión</button>
-                        </div>
+						    <label class="label_field hidden">hidden label</label>
+						    <button class="main_bt" style="background-color: #007BFF; margin-left: 10%;">Iniciar Sesión</button>
+						</div>
+
+    <div style="text-align: center;">
+		<a href="login.jsp" style="color: #007BFF; text-decoration: none; margin-top: 10px; display: block;">
+		    <i class="fas fa-arrow-left"></i> Volver a la página de inicio de sesión
+</a>    
+    </div>
                         <div class="field margin_0">
                            <label class="label_field hidden">hidden label</label>
                         </div>

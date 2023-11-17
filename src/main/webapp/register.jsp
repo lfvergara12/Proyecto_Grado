@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
    <!-- basic -->
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
    <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <!-- mobile metas -->
@@ -32,11 +33,14 @@
    <link rel="stylesheet" href="css/custom.css" />
    <!-- calendar file css -->
    <link rel="stylesheet" href="js/semantic.min.css" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+   
    <!--[if lt IE 9]>
    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
    <![endif]-->
 </head>
+
 <body class="inner_page login">
    <div class="full_container">
       <div class="container">
@@ -48,28 +52,55 @@
                   </div>
                </div>
                <div class="login_form">
-                  <h2>Registro de Usuario</h2>
-                  <br>
-    <form action="UserController" method="post">
-        <input type="hidden" name="action" value="register">
-        
-        <label>Nombre:</label>
-        <input type="text" name="nombre" required><br><br>
-        
-        <label>Apellido:</label>
-        <input type="text" name="apellido" required><br><br>
-        
-        <label>Email:</label>
-        <input type="email" name="email" required><br><br>
-        
-        <label>Usuario:</label>
-        <input type="text" name="usuario" required><br><br>
-        
-        <label>Contraseña:</label>
-        <input type="password" name="password" required><br><br>
-        
-        <input type="submit" value="Registrarse">
-    </form>
+<h3 style="text-align: center; font-size: 24px; color: #333; margin-top: 10px;">Registro de Usuario</h3>
+                  
+    <form action="UserController" method="post" onsubmit="return validateForm()">
+    <input type="hidden" name="action" value="register">
+
+    <fieldset>
+        <div class="field">
+            <label class="label_field">Nombre</label>
+            <input type="text" name="nombre" placeholder="Nombre" required />
+        </div>
+        <div class="field">
+            <label class="label_field">Apellido</label>
+            <input type="text" name="apellido" placeholder="Apellido" required />
+        </div>
+        <div class="field">
+            <label class="label_field">Email</label>
+            <input type="email" name="email" placeholder="Email" required />
+        </div>
+        <div class="field">
+            <label class="label_field">Usuario</label>
+            <input type="text" name="usuario" placeholder="Usuario" required />
+        </div>
+        <div class="field" style="position: relative;">
+    <label class="label_field">Contraseña</label>
+    <input type="password" id="password" name="password" placeholder="Contraseña" required />
+      </div>
+    </fieldset>
+
+    <div style="text-align: center;">
+        <input type="submit" value="Registrarse" style="background-color: #007BFF; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px;">
+		<a href="login.jsp" style="color: #007BFF; text-decoration: none; margin-top: 10px; display: block;">
+		    <i class="fas fa-arrow-left"></i> Volver a la página de inicio de sesión
+</a>    
+    </div>
+</form>
+<script>
+    function validateForm() {
+        var password = document.getElementById("password").value;
+        var passwordRegex = /^(?=.*[!@#$%^&*()-_=+\[\]{}|;:'",.<>?])(?=.*[0-9])(?=.*[A-Z]).{8,}$/;
+
+        if (!passwordRegex.test(password)) {
+            alert("La contraseña debe contener caracteres especiales, números y letras mayúsculas.");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
     
     <% if (request.getAttribute("error") != null) { %>
         <p>Error: <%= request.getAttribute("error") %></p>

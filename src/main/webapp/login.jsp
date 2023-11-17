@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
    <!-- basic -->
    <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,7 +38,33 @@
    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
    <![endif]-->
 </head>
+    <style>
+        .btn-link {
+            color: #007BFF;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        .btn-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <style>
+    .main_bt {
+        background-color: #007BFF; /* Color de fondo azul */
+        color: #fff; /* Color del texto blanco */
+        border: none; /* Quitar el borde del botón si es necesario */
+        padding: 10px 20px; /* Ajusta el relleno según tu preferencia */
+        border-radius: 5px; /* Añade esquinas redondeadas si deseas */
+    }
+
+    .main_bt:hover {
+        background-color: #0056b3; /* Cambiar el color de fondo al pasar el cursor sobre el botón */
+    }
+</style>
 <body class="inner_page login">
+
    <div class="full_container">
       <div class="container">
          <div class="center verticle_center full_height">
@@ -47,31 +74,49 @@
                      <img width="210" src="images/logo/logo.png" alt="#" />
                   </div>
                </div>
+               
+<%-- Otras partes de tu código JSP --%>
+
+<%
+    String mensajeRegistroExitoso = (String) request.getAttribute("registroExitoso");
+    if (mensajeRegistroExitoso != null && !mensajeRegistroExitoso.trim().isEmpty()) {
+%>
+    <div class="alert alert-success" role="alert">
+        <%= mensajeRegistroExitoso %>
+    </div>
+<%
+    }
+%>
+
+<%-- Otras partes de tu código JSP --%>
+
+
+               
                <div class="login_form">
-                  <form action="UserController" method="post">
-                     <input type="hidden" name="action" value="login">
-                     <fieldset>
-                        <div class="field">
-                           <label class="label_field">Email Address</label>
-                           <input type="email" name="email" placeholder="E-mail" required />
-                        </div>
-                        <div class="field">
-                           <label class="label_field">Password</label>
-                           <input type="password" name="password" placeholder="Password" required />
-                        </div>
-                        <div class="field">
-                           <label class="label_field hidden">hidden label</label>
-                           <a class="forgot" href="">Forgotten Password?</a>
-                        </div>
-                        <div class="field margin_0">
-                           <label class="label_field hidden">hidden label</label>
-                           <button class="main_bt" style="margin-left:10%;">Iniciar Sesión</button>
-                        </div>
-                     </fieldset> 
-                  </form>
-               </div>
-               <a href="register.jsp" style="margin-left:75%;">Contactenos</a>
-               <a href="loginAdmin.jsp" style="margin-left:75%;">Login Admin</a>
+			        <form action="UserController" method="post">
+			        <input type="hidden" name="action" value="login">
+			        <fieldset>
+			            <div class="field">
+			                <label class="label_field">Usuario</label>
+			                <input type="text" name="usuario" placeholder="Usuario" required />
+			            </div>
+			            <div class="field">
+			                <label class="label_field">Password</label>
+			                <input type="password" name="password" placeholder="Password" required />
+			            </div>
+			            <br>
+			            <div class="field margin_0">
+			                <label class="label_field hidden">hidden label</label>
+			                <button class="main_bt" style="margin-left: 10%;">Iniciar Sesión</button>
+			            </div>
+			        </fieldset>
+			    </form>
+			</div>
+			<div style="margin-left: 75%;">
+			    <a href="register.jsp" class="btn-link">Registrarse    </a>
+			    <br>
+			    <a href="loginAdmin.jsp" class="btn-link">Login Admin</a>
+			</div>
                <% if (request.getAttribute("error") != null) { %>
                    <p>Error: <%= request.getAttribute("error") %></p>
                <% } %>

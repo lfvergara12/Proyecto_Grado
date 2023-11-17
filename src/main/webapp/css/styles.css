@@ -1,0 +1,11 @@
+@charset "UTF-8";
+.btn-link {
+    color: #007BFF; /* Color del enlace */
+    text-decoration: none; /* Quita el subrayado del enlace */
+    margin: 0 10px; /* Espacio entre los enlaces */
+    font-weight: bold; /* Texto en negrita */
+}
+
+.btn-link:hover {
+    text-decoration: underline; /* Subraya el enlace al pasar el cursor sobre él */
+}

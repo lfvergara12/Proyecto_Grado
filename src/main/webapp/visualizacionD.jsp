@@ -157,7 +157,8 @@
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
-                           <div class="center">
+                           
+                             <div class="center">
                               <h2>Descargue PDF</h2>
                               </div>
                            </div>
@@ -170,14 +171,14 @@
     <!-- Contenido del formulario -->
     <div class="container-fluid">
 <div style="max-width: 700px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; border: 1px solid #ccc; border-radius: 5px;">
-<h1 style="font-size: 24px; text-align: center; color: #007bff; margin-bottom: 20px;">Resultado de la Consulta</h1>
-
-		<p style="font-size: 18px; text-align: center;"><%= request.getAttribute("resultadoTexto") %></p>
-		<br>
-		<!-- Estilo para el enlace de descarga de PDF -->
-		<p style="text-align: center;">
-        <a href="<%= request.getAttribute("rutaPDF") %>" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px;" target="_blank">Descargar PDF</a>
-		</p>
+    <h1 style="text-align: center; color: #007bff;">Resultado de la Consulta</h1>
+    <br>
+    <p style="font-size: 18px; text-align: center;"><%= request.getAttribute("resultadoTexto") %></p>
+    <br>
+    <!-- Estilo para el enlace de descarga de PDF -->
+    <p style="text-align: center;">
+        <a href="<%= request.getAttribute("rutaPDF") %>" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px; "target="_blank">Descargar PDF</a>
+    </p>
 </div>
 
       <!-- jQuery -->

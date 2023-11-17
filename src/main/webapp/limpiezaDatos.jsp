@@ -1,7 +1,11 @@
+<%@ page import="java.sql.Connection, java.sql.Statement, java.sql.ResultSet, java.sql.SQLException" %>
+<%@ page import="conexionA.DBUtil" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
    <head>
       <!-- basic -->
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <!-- mobile metas -->
@@ -42,16 +46,18 @@
                <div class="sidebar_blog_1">
                   <div class="sidebar-header">
                      <div class="logo_section">
-                        <a href="index.html"><img class="logo_icon img-responsive" src="images/logo/logo_icon.png" alt="#" /></a>
+                        <a href="#"><img class="logo_icon img-responsive" src="images/logo/logo_icon.png" alt="#" /></a>
                      </div>
                   </div>
 
                   <div class="sidebar_user_info">
                      <div class="icon_setting"></div>
                      <div class="user_profle_side">
-                        <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg" alt="#" /></div>
+                        <div class="user_img"><img class="img-responsive" src="images/user3.png" alt="#" /></div>
                         <div class="user_info">
-                           <h6>John David</h6>
+                         <% String nombre = (String) request.getSession().getAttribute("nombre");
+                         out.print(nombre);
+							%>
                            <p><span class="online_animation"></span> Online</p>
                         </div>
                      </div>
@@ -70,10 +76,10 @@
                      
 <!--                   </ul> -->
 					<ul class="list-unstyled components">
-					  <li class="active"><a href="#"><i class="fa fa-table purple_color2"></i><span>Tabla de Usuarios</span></a></li>
-					  <li ><a href="indexAdmin2.html" ><i class="fa fa-briefcase blue1_color"></i><span>Registros por prueba</span></a></li>
-					  <li><a href="indexAdmin3.html" ><i class="fa fa-bar-chart-o green_color"></i> <span>Listado de pruebas</span></a></li>
-					  <li><a href="indexAdmin4.html" ><i class="fa fa-briefcase blue1_color"></i><span>Subir archivos</span></a></li>
+					  <li class="active"><a href="indexAdmin.jsp"><i class="fa fa-table purple_color2"></i><span>CRUD usuarios</span></a></li>
+					  <li ><a href="listadoPrueba.jsp" ><i class="fa fa-briefcase blue1_color"></i><span>Listado de pruebas </span></a></li>
+					  <li><a href="limpiezaDatos.jsp" ><i class="fa fa-bar-chart-o green_color"></i> <span>Limpieza de datos</span></a></li>
+					  <li><a href="cargaAdm.jsp" ><i class="fa fa-briefcase blue1_color"></i><span>Subir reportes</span></a></li>
 					</ul>
                </div>
             </nav>
@@ -86,7 +92,7 @@
                      <div class="full">
                         <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
                         <div class="logo_section">
-                           <a href="indexAdmin.html"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a>
+                           <a href="limpiezaDatos.jsp"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a>
                         </div>
                         <div class="right_topbar">
                            <div class="icon_info">
@@ -94,17 +100,14 @@
                               <ul class="user_profile_dd">
                                  <li>
 	                                 		<a class="dropdown-toggle" data-toggle="dropdown">
-											   <img class="img-responsive rounded-circle" src="images/layout_img/user_img.jpg" alt="#" />
+											   <img class="img-responsive rounded-circle" src="images/user3.png" alt="#" />
 											   <span class="name_user">
-											      <% String nombre = (String) request.getSession().getAttribute("nombre");
+											      <% 
 											         out.print(nombre); %>
 											   </span>
 											</a> 
                                     <div class="dropdown-menu">
-                                       <a class="dropdown-item" href="profile.html">My Profile</a>
-                                       <a class="dropdown-item" href="settings.html">Settings</a>
-                                       <a class="dropdown-item" href="help.html">Help</a>
-                                       <a class="dropdown-item" href="#"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
+                                       <a class="dropdown-item" href="login.jsp"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
                                     </div>
                                  </li>
                               </ul>
@@ -127,22 +130,160 @@
                   </div>
                </div>
 
+
+<table>
+    <!-- El resto de tu código para mostrar la lista de consultas -->
+</table>
+
+<%-- Otras partes de tu código JSP --%>
+
   <div class="counter_no" >
   <div class="container">
-       <h1 class="title-proyect">Tabla de usuarios</h1>
-        <div class="create-element">
-            <input type="text" class="nombre" placeholder="Nombre">
-            <input type="email" class="correo" placeholder="Correo:">
-            <button class="btn create">Crear</button>
-        </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                
-                </tr>
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limpieza de Datos</title>
+    <style>
+        
+
+        h1 {
+            color: #3498db;
+        }
+
+        /* Estilos para el botón */
+        #cleanButton {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Estilos para el indicador visual */
+        #loader-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        #loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 2s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+    <body>
+    <h1>Limpieza de Datos</h1>
+    <input type="file" id="fileInput" accept=".txt">
+    <button id="cleanButton">Limpiar Datos</button>
+    <a id="downloadLink" style="display: none" download="resultado.csv">Descargar CSV</a>
+
+    <!-- Contenedor del indicador visual -->
+    <div id="loader-container">
+        <div id="loader"></div> <!-- Indicador visual -->
+    </div>
+
+  <script>
+    function limpiarTexto(texto) {
+        // Reemplazar "¬" por punto y coma (;)
+        texto = texto.replace(/¬/g, ';');
+
+        // Eliminar caracteres no ASCII
+        texto = texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+        // Reemplazar ;; por ;?; y ,, por ,?, y eliminar comillas dobles
+        texto = texto.replace(/;;/g, ';?;').replace(/"/g, '');
+
+        // Eliminar caracteres '´'
+        texto = texto.replace(/['´]/g, '');
+
+        if (texto.trim() === '') {
+            return ''; // Elimina filas vacías
+        } else if (texto.includes(';;')) {
+            return texto.replace(/;;/g, ';?;');
+        } else {
+            return texto;
+        }
+    }
+
+   function validarFilas(filas) {
+        const numeroCamposEsperados = filas[0].split(';').length;
+        const filasFiltradas = filas.filter(fila => fila.split(';').length === numeroCamposEsperados);
+        return filasFiltradas;
+    }
+
+    async function limpieza(numVeces) {
+        const fileInput = document.getElementById('fileInput');
+        const inputFile = fileInput.files[0];
+
+        if (!inputFile) {
+            alert('Por favor, selecciona un archivo de texto.');
+            return;
+        }
+
+        // Mostrar el indicador visual mientras se procesa
+        const loader = document.getElementById('loader');
+        loader.style.display = 'block';
+
+        const reader = new FileReader();
+
+        reader.onload = async function (event) {
+            let archivoEntrada = event.target.result;
+            const lineasEntrada = archivoEntrada.split('\n');
+            const filasValidadas = validarFilas(lineasEntrada);
+
+            for (let i = 0; i < numVeces; i++) {
+                const lineasSalida = [];
+
+                for (const fila of filasValidadas) {
+                    const lineaLimpia = limpiarTexto(fila);
+                    lineasSalida.push(lineaLimpia);
+                }
+
+                archivoEntrada = lineasSalida.join('\n');
+
+                // Introduce una pausa para liberar memoria
+                await new Promise(resolve => setTimeout(resolve, 0));
+            }
+
+            // Convertir el último archivo de texto en CSV
+            const lineasCSV = archivoEntrada.split('\n');
+            const csvData = lineasCSV.join('\n');
+
+            // Crear archivo CSV para descarga
+            const blob = new Blob([csvData], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const downloadLink = document.getElementById('downloadLink');
+            downloadLink.href = url;
+            downloadLink.style.display = 'block';
+
+            // Ocultar el indicador visual
+            loader.style.display = 'none';
+        };
+
+        reader.readAsText(inputFile);
+    }
+
+    document.getElementById('cleanButton').addEventListener('click', function () {
+        limpieza(4); // Puedes cambiar el número de veces aquí
+    });
+</script>
+</body>
+
             </thead>
             <tbody class="table-content">
             </tbody>

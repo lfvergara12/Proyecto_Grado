@@ -1,4 +1,4 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -6,7 +6,7 @@
       lang="en">
    <head>
       <!-- basic -->
- 
+ <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <!-- mobile metas -->
@@ -70,17 +70,50 @@
       <link rel="stylesheet" href="css/custom.css" />
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-          <style>
-        /* Estilos para centrar el mapa en la mitad de la p·gina */
-        .map-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 70vh; /* Ajusta la altura del mapa seg˙n tu preferencia */
-        }
-    </style>
 
-     
+
+      <style>
+         body {
+        font-family: Arial, sans-serif; /* Cambia "Arial" por el tipo de fuente que desees */
+    }
+        /* Estilos para centrar el formulario */
+       body, html {
+            height: 100%;
+            margin: 0;
+        }
+    .page_title h2 {
+        font-size: 24px; /* Tama√±o del texto del t√≠tulo */
+        margin: 0;
+    }
+
+
+        form {
+            width: 80%; /* Opcional: para que el formulario ocupe todo el ancho */
+            max-width: 400px; /* Ancho m√°ximo del formulario */
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px; /* Borde redondeado */
+            
+        }
+
+        .menu-section {
+            margin-bottom: 20px;
+        }
+            button#btnConsultar {
+        display: block;
+        margin: 0 auto;
+         background-color: #007bff; /* Cambiar a azul */
+        color: #fff; /* Color del texto en el bot√≥n */
+    }
+     select, select option {
+        border-radius: 15px; 
+        center;/* Ajusta el valor seg√∫n el nivel de ovalado deseado */
+    }
+
+        /* Agrega m√°s estilos personalizados seg√∫n sea necesario */
+    </style>
    <body class="dashboard dashboard_1">
       <div class="full_container">
          <div class="inner_container">
@@ -90,11 +123,11 @@
             <nav id="sidebar">
                <div class="sidebar_blog_1">
                   <!-- ... -->
-                  <!-- AquÌ va el bloque de cÛdigo que quieres agregar -->
+                  <!-- Aqu√≠ va el bloque de c√≥digo que quieres agregar -->
                   <div class="sidebar_user_info">
                      <div class="icon_setting"></div>
                      <div class="user_profle_side">
-                        <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg" alt="#" /></div>
+                        <div class="user_img"><img class="img-responsive" src="images/user3.png" alt="#" /></div>
                         <div class="user_info">
                            <% String nombre = (String) request.getSession().getAttribute("nombre");
                               out.print(nombre);
@@ -106,12 +139,13 @@
                   <!-- ... -->
                </div>
                <div class="sidebar_blog_2">
+               
                   <h4>Escoge el tipo de prueba    
                   <ul class="list-unstyled components">
-                     <li class="active"><a href="users.jsp"><i class="fa fa-table purple_color2"></i><span>Tercero</span></a></li>
-                     <li><a href="indexAdmin2.html"><i class="fa fa-briefcase blue1_color"></i><span>Quinto</span></a></li>
-                     <li><a href="indexAdmin3.html"><i class="fa fa-bar-chart-o green_color"></i><span>Noveno</span></a></li>
-                     <li><a href="indexAdmin4.html"><i class="fa fa-briefcase blue1_color"></i><span>Once</span></a></li>
+                     <li class="active"><a href="index.jsp"><i class="fa fa-table purple_color2"></i><span>Prueba 11</span></a></li>
+                     <li><a href="pruebas.jsp"><i class="fa fa-briefcase blue1_color"></i><span>Prueba 3 5 9</span></a></li>
+                     <li><a href="tableroDinamico.jsp"><i class="fa fa-briefcase green_color"></i><span>Tablero dinamico</span></a></li>
+
                   </ul>
                </div>
             </nav>
@@ -125,19 +159,17 @@
                   <nav class="navbar navbar-expand-lg navbar-light">
                      <div class="full">
                         <div class="logo_section">
-                           <a href="index.html"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a>
+                           <a href="index.jsp"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a>
                         </div>
                         <div class="right_topbar">
                            <div class="icon_info">
                               <ul>
-                                 <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge">2</span></a></li>
-                                 <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
-                                 <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a></li>
+
                               </ul>
                               <ul class="user_profile_dd">
                                  <li>
 										<a class="dropdown-toggle" data-toggle="dropdown">
-										   <img class="img-responsive rounded-circle" src="images/layout_img/user_img.jpg" alt="#" />
+										   <img class="img-responsive rounded-circle" src="images/user3.png" alt="#" />
 										   <span class="name_user">
 										      <% nombre = (String) request.getSession().getAttribute("nombre");
 										         out.print(nombre); %>
@@ -160,100 +192,67 @@
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
+                               <div class="center">
                            
-                              <h2>Bienvenido, por favor seleccione las caracteristicas para el analisis</h2>
+                              <h2>¬°Bienvenido! Seleccione las caracteristicas para el analisis</h2>
+                           </div>
                            </div>
                         </div>
                      </div>
                   </div>
                </div>
-                     <div class="row column1">
-                        <div class="col-md-6 col-lg-3">
-                           <div class="full counter_section margin_bottom_30">
-                              <div class="couter_icon">
-                                 <div> 
-                                    <i class="fa fa-user yellow_color"></i>
-                                 </div>
-                              </div>
-                              <div class="counter_no">
-                                 <div>
-                                    <p class="head_couter">
-                                    <head>
-                                        <style>
-        /* Estilos para centrar el formulario */
-       body, html {
-            height: 100%;
-            margin: 0;
-        }
-
-        .container-fluid {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-    
-
-        form {
-            width: 100%; /* Opcional: para que el formulario ocupe todo el ancho */
-            max-width: 400px; /* Ancho m·ximo del formulario */
-            padding: 20px;
-            border: 1px solid #ccc;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .menu-section {
-            margin-bottom: 20px;
-        }
-
-        /* Agrega m·s estilos personalizados seg˙n sea necesario */
-    </style>
-    </head>
-    <body class="dashboard dashboard_1">
-    <!-- Contenido del formulario -->
-    <div class="container-fluid">
-<form action="ConsultaServlet" method="post">
+<div class="container-flui">
+    <div class="center">
+    <form action="ConsultaServlet" method="post">
 
     <div class="menu-section">
     
-        <h3>Tipo de An·lisis</h3>
+        <h3>Tipo de An√°lisis</h3>
         <select id="selectTipoAnalisis" name="selectTipoAnalisis">
-            <option value="">Seleccionar An·lisis</option>
-            <option value="descriptivo">An·lisis Descriptivo</option>
-            <option value="predictivo">An·lisis Predictivo</option>
+            <option value="">Seleccionar An√°lisis</option>
+            <option value="descriptivo">An√°lisis Descriptivo</option>
+            <option value="predictivo">An√°lisis Predictivo</option>
         </select>
     </div>
     
     <div class="menu-section">
-        <h3>AÒo</h3>
+        <h3>A√±o</h3>
         <select id="selectAnio" name="selectAnio">
-            <option value="">Seleccionar AÒo</option>
+            <option value="">Seleccionar A√±o</option>
             <option value="2017">2017</option>
             <option value="2018">2018</option>
             <option value="2019">2019</option>
             <option value="2020">2020</option>
             <option value="2021">2021</option>
-            <!-- Agrega m·s opciones de aÒo si es necesario -->
+            <!-- Agrega m√°s opciones de a√±o si es necesario -->
         </select>
     </div>
     
     <div class="menu-section">
-        <h3>RegiÛn</h3>
+        <h3>Regi√≥n</h3>
         <select id="selectRegion" name="selectRegion">
-            <option value="">Seleccionar RegiÛn</option>
+            <option value="">Seleccionar Regi√≥n</option>
             <option value="amazonica">Amazonica</option>
             <option value="orinoquia">Orinoquia</option>
             <option value="caribe">Caribe</option>
             <option value="pacifica">Pacifica</option>
             <option value="andina">Andina</option>
-            <!-- Agrega m·s opciones de regiÛn si es necesario -->
+            <!-- Agrega m√°s opciones de regi√≥n si es necesario -->
         </select>
     </div>
+
     
-    <!-- BotÛn Consultar -->
+    <!-- Bot√≥n Consultar -->
 <button id="btnConsultar">Consultar</button>
 </form>
+    </div>
+    </div>
+
+                             
+
+    
+    <!-- Contenido del formulario -->
+    
       <!-- jQuery -->
       <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
       <script src="js/script.js"></script>

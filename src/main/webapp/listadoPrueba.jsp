@@ -1,6 +1,7 @@
 <%@ page import="java.sql.Connection, java.sql.Statement, java.sql.ResultSet, java.sql.SQLException" %>
 <%@ page import="conexionA.DBUtil" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.sql.PreparedStatement" %>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -129,128 +130,120 @@
                      </div>
                   </div>
                </div>
-
- 
 <%-- Otras partes de tu código JSP --%>
 
+<%-- Verificar si hay un mensaje de eliminación exitosa y mostrarlo --%>
 <%
-    String eliminacionExitosa = (String) request.getAttribute("eliminacionExitosa");
-    if (eliminacionExitosa != null && !eliminacionExitosa.trim().isEmpty()) {
+    String eliminacionExitosaMessage = (String) request.getSession().getAttribute("eliminacionExitosa");
+    if (eliminacionExitosaMessage != null && !eliminacionExitosaMessage.trim().isEmpty()) {
 %>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <%= eliminacionExitosa %>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+    <div class="alert alert-success" role="alert">
+        <%= eliminacionExitosaMessage %>
     </div>
 <%
+    // Eliminar el atributo de la sesión para que no se muestre en futuras visitas
+    request.getSession().removeAttribute("eliminacionExitosa");
     }
 %>
+  <div class="counter_no" >
+  <div class="container">
 
 
-<%-- Otras partes de tu código JSP --%>
-<%-- Otras partes de tu código JSP --%>
-
-<%
-    String registroExitoso = (String) request.getAttribute("registroExitoso");
-    if (registroExitoso != null && !registroExitoso.trim().isEmpty()) {
-%>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <%= registroExitoso %>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-<%
-    }
-
-    String actualizacionExitosa = (String) request.getAttribute("actualizacionExitosa");
-    if (actualizacionExitosa != null && !actualizacionExitosa.trim().isEmpty()) {
-%>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <%= actualizacionExitosa %>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-<%
-    }
-%>
-
-<%-- Otras partes de tu código JSP --%>
 
 
-<head>
-    <meta charset="UTF-8">
-    <title>Lista de Usuarios</title>
-</head>
-<body>
-
-    <div style="max-width: 850px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; border: 1px solid #ccc; border-radius: 5px;">
-        <h1 style="text-align: center;">Lista de Usuarios</h1>
-        
-        <table style="width: 100%; border-collapse: collapse;">
-            <thead>
-                <tr>
-                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Nombre</th>
-                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Apellido</th>
-                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Email</th>
-                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Usuario</th>
-                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% 
-                try (Connection connection = DBUtil.getConnection()) {
-                    String sql = "SELECT * FROM usuarios";
-                    Statement statement = connection.createStatement();
-                    ResultSet resultSet = statement.executeQuery(sql);
-
-                    while (resultSet.next()) {
-                        int id = resultSet.getInt("id");
-                        nombre = resultSet.getString("nombre");
-                        String apellido = resultSet.getString("apellido");
-                        String usuario = resultSet.getString("usuario");
-                        String email = resultSet.getString("email");
-                %>
-                <tr>
-                    <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><%= nombre %></td>
-                    <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><%= apellido %></td>
-                    <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><%= email %></td>
-                    <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><%= usuario %></td>
-                    <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">
-                        <a href="UserController?action=editUser&id=<%= id %>" style="text-decoration: none; color: #007bff;">Editar</a>
-                        <form action="UserController" method="post" style="display: inline;">
-                            <input type="hidden" name="action" value="deleteUser">
-                            <input type="hidden" name="id" value="<%= id %>">
-                            <button type="submit" style="background-color: #dc3545; color: #fff; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer;">Eliminar</button>
-                        </form>
-                    </td>
-                </tr>
-                <% 
-                    }
-                    resultSet.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                %>
-            </tbody>
-        </table>
-        
-        <a href="crearUsuario.jsp" style="display: block; margin-top: 10px; text-align: center; color: #007bff;">Crear Usuario</a>
-    </div>
-</body>
-
-
-            </thead>
-            <tbody class="table-content">
-            </tbody>
-        </table>
         <div class="pagination">
             <ul></ul>
         </div>
         <div class="container-popup-messages">
-            
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Consultas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+    </style>
+<head>
+    <!-- Agrega las etiquetas meta, enlaces CSS y otros encabezados aquí -->
+</head>
+<body>
+    <h1>Lista de Consultas</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Tipo de Análisis</th>
+                <th>Año</th>
+                <th>Región</th>
+                <th>Resultado Texto</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%
+            try (Connection connection = DBUtil.getConnection()) {
+                String sql = "SELECT * FROM consultas";
+                PreparedStatement statement = connection.prepareStatement(sql);
+                ResultSet resultSet = statement.executeQuery();
+
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    String tipoAnalisis = resultSet.getString("tipo_analisis");
+                    String anio = resultSet.getString("anio");
+                    String region = resultSet.getString("region");
+                    String resultadoTexto = resultSet.getString("resultado_texto");
+
+            %>
+            <tr>
+                <td><%= tipoAnalisis %></td>
+                <td><%= anio %></td>
+                <td><%= region %></td>
+                <td><%= resultadoTexto %></td>
+                <td>
+                    <form action="eliminarConsulta.jsp" method="post">
+                        <input type="hidden" name="id" value="<%= id %>">
+<button type="submit" class="btn btn-danger" style="background-color: #808080; color: #fff;">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            <%
+                }
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            %>
+        </tbody>
+    </table>
+</body>
         </div>
   </div>
 </div>
