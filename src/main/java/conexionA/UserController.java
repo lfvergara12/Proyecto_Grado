@@ -287,6 +287,9 @@ public void loginUser(HttpServletRequest request, HttpServletResponse response)
         String email = request.getParameter("email");
         String usuario = request.getParameter("usuario");
         String password = request.getParameter("password");
+        
+        // Encriptar la contraseña antes de almacenarla
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
         // Encriptar la contraseña antes de almacenarla
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());

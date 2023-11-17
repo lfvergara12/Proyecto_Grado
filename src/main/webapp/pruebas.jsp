@@ -71,12 +71,12 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
           <style>
-        /* Estilos para centrar el mapa en la mitad de la página */
+        /* Estilos para centrar el mapa en la mitad de la pï¿½gina */
         .map-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 70vh; /* Ajusta la altura del mapa según tu preferencia */
+            height: 70vh; /* Ajusta la altura del mapa segï¿½n tu preferencia */
         }
     </style>
 <style>
@@ -89,14 +89,14 @@
             margin: 0;
         }
     .page_title h2 {
-        font-size: 24px; /* Tamaño del texto del título */
+        font-size: 24px; /* Tamaï¿½o del texto del tï¿½tulo */
         margin: 0;
     }
 
 
         form {
             width: 80%; /* Opcional: para que el formulario ocupe todo el ancho */
-            max-width: 400px; /* Ancho máximo del formulario */
+            max-width: 400px; /* Ancho mï¿½ximo del formulario */
             padding: 20px;
             border: 1px solid #ccc;
             background-color: #fff;
@@ -112,14 +112,14 @@
         display: block;
         margin: 0 auto;
          background-color: #007bff; /* Cambiar a azul */
-        color: #fff; /* Color del texto en el botón */
+        color: #fff; /* Color del texto en el botï¿½n */
     }
      select, select option {
         border-radius: 15px; 
-        center;/* Ajusta el valor según el nivel de ovalado deseado */
+        center;/* Ajusta el valor segï¿½n el nivel de ovalado deseado */
     }
 
-        /* Agrega más estilos personalizados según sea necesario */
+        /* Agrega mï¿½s estilos personalizados segï¿½n sea necesario */
     </style>
      
    <body class="dashboard dashboard_1">
@@ -131,7 +131,7 @@
             <nav id="sidebar">
                <div class="sidebar_blog_1">
                   <!-- ... -->
-                  <!-- Aquí va el bloque de código que quieres agregar -->
+                  <!-- Aquï¿½ va el bloque de cï¿½digo que quieres agregar -->
                   <div class="sidebar_user_info">
                      <div class="icon_setting"></div>
                      <div class="user_profle_side">
@@ -201,7 +201,7 @@
                            <div class="page_title">
                                <div class="center">
                            
-                              <h2>¡Bienvenido! Seleccione las caracteristicas para el analisis</h2>
+                              <h2>ï¿½Bienvenido! Seleccione las caracteristicas para el analisis</h2>
                            </div>
                            </div>
                         </div>
@@ -212,7 +212,7 @@
   <div class="center">
 <form action="ConsultaS" method="post">        
 
-    <!-- Grupo de opciones para el año y grado -->
+    <!-- Grupo de opciones para el aï¿½o y grado -->
     <div class="menu-section">
         <h3>Grado</h3>
         <select id="selectGrado" name="selectGrado">
@@ -224,12 +224,12 @@
     </div>
 
     <div class="menu-section">
-        <h3>Año</h3>
+        <h3>Aï¿½o</h3>
         <select id="selectAnio" name="selectAnio">
-            <option value="">Seleccionar Año</option>
+            <option value="">Seleccionar Aï¿½o</option>
             <option value="2016">2016</option>
             <option value="2017">2017</option>
-            <!-- Agrega más opciones de año si es necesario -->
+            <!-- Agrega mï¿½s opciones de aï¿½o si es necesario -->
         </select>
     </div>
 

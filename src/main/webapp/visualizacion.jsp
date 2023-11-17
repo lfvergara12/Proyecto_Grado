@@ -71,12 +71,12 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
           <style>
-        /* Estilos para centrar el mapa en la mitad de la página */
+        /* Estilos para centrar el mapa en la mitad de la pï¿½gina */
         .map-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 70vh; /* Ajusta la altura del mapa según tu preferencia */
+            height: 70vh; /* Ajusta la altura del mapa segï¿½n tu preferencia */
         }
     </style>
 
@@ -90,7 +90,7 @@
             <nav id="sidebar">
                <div class="sidebar_blog_1">
                   <!-- ... -->
-                  <!-- Aquí va el bloque de código que quieres agregar -->
+                  <!-- Aquï¿½ va el bloque de cï¿½digo que quieres agregar -->
                   <div class="sidebar_user_info">
                      <div class="icon_setting"></div>
                      <div class="user_profle_side">
