@@ -80,7 +80,48 @@
         }
     </style>
 
-     
+      <style>
+         body {
+        font-family: Arial, sans-serif; /* Cambia "Arial" por el tipo de fuente que desees */
+    }
+        /* Estilos para centrar el formulario */
+       body, html {
+            height: 100%;
+            margin: 0;
+        }
+    .page_title h2 {
+        font-size: 24px; /* Tamaño del texto del título */
+        margin: 0;
+    }
+
+
+        form {
+            width: 80%; /* Opcional: para que el formulario ocupe todo el ancho */
+            max-width: 400px; /* Ancho máximo del formulario */
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px; /* Borde redondeado */
+            
+        }
+
+        .menu-section {
+            margin-bottom: 20px;
+        }
+            button#btnConsultar {
+        display: block;
+        margin: 0 auto;
+         background-color: #007bff; /* Cambiar a azul */
+        color: #fff; /* Color del texto en el botón */
+    }
+     select, select option {
+        border-radius: 15px; 
+        center;/* Ajusta el valor según el nivel de ovalado deseado */
+    }
+
+        /* Agrega más estilos personalizados según sea necesario */
+    </style>
    <body class="dashboard dashboard_1">
       <div class="full_container">
          <div class="inner_container">
@@ -94,7 +135,7 @@
                   <div class="sidebar_user_info">
                      <div class="icon_setting"></div>
                      <div class="user_profle_side">
-                        <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg" alt="#" /></div>
+                        <div class="user_img"><img class="img-responsive" src="images/user3.png" alt="#" /></div>
                         <div class="user_info">
                            <% String nombre = (String) request.getSession().getAttribute("nombre");
                               out.print(nombre);
@@ -106,12 +147,12 @@
                   <!-- ... -->
                </div>
                <div class="sidebar_blog_2">
+               
                   <h4>Escoge el tipo de prueba    
                   <ul class="list-unstyled components">
-                     <li class="active"><a href="users.jsp"><i class="fa fa-table purple_color2"></i><span>Tercero</span></a></li>
-                     <li><a href="indexAdmin2.html"><i class="fa fa-briefcase blue1_color"></i><span>Quinto</span></a></li>
-                     <li><a href="indexAdmin3.html"><i class="fa fa-bar-chart-o green_color"></i><span>Noveno</span></a></li>
-                     <li><a href="indexAdmin4.html"><i class="fa fa-briefcase blue1_color"></i><span>Once</span></a></li>
+                     <li class="active"><a href="index.jsp"><i class="fa fa-table purple_color2"></i><span>Prueba 11</span></a></li>
+                     <li><a href="pruebas.jsp"><i class="fa fa-briefcase blue1_color"></i><span>Prueba 3 5 9</span></a></li>
+
                   </ul>
                </div>
             </nav>
@@ -125,19 +166,17 @@
                   <nav class="navbar navbar-expand-lg navbar-light">
                      <div class="full">
                         <div class="logo_section">
-                           <a href="index.html"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a>
+                           <a href="index.jsp"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a>
                         </div>
                         <div class="right_topbar">
                            <div class="icon_info">
                               <ul>
-                                 <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge">2</span></a></li>
-                                 <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
-                                 <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a></li>
+
                               </ul>
                               <ul class="user_profile_dd">
                                  <li>
 										<a class="dropdown-toggle" data-toggle="dropdown">
-										   <img class="img-responsive rounded-circle" src="images/layout_img/user_img.jpg" alt="#" />
+										   <img class="img-responsive rounded-circle" src="images/user3.png" alt="#" />
 										   <span class="name_user">
 										      <% nombre = (String) request.getSession().getAttribute("nombre");
 										         out.print(nombre); %>
@@ -160,60 +199,18 @@
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
+                               <div class="center">
                            
-                              <h2>Bienvenido, por favor seleccione las caracteristicas para el analisis</h2>
+                              <h2>¡Bienvenido! Seleccione las caracteristicas para el analisis</h2>
+                           </div>
                            </div>
                         </div>
                      </div>
                   </div>
                </div>
-                     <div class="row column1">
-                        <div class="col-md-6 col-lg-3">
-                           <div class="full counter_section margin_bottom_30">
-                              <div class="couter_icon">
-                                 <div> 
-                                    <i class="fa fa-user yellow_color"></i>
-                                 </div>
-                              </div>
-                              <div class="counter_no">
-                                 <div>
-                                    <p class="head_couter">
-                                    <head>
-                                        <style>
-        /* Estilos para centrar el formulario */
-       body, html {
-            height: 100%;
-            margin: 0;
-        }
-
-        .container-fluid {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-    
-
-        form {
-            width: 100%; /* Opcional: para que el formulario ocupe todo el ancho */
-            max-width: 400px; /* Ancho máximo del formulario */
-            padding: 20px;
-            border: 1px solid #ccc;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .menu-section {
-            margin-bottom: 20px;
-        }
-
-        /* Agrega más estilos personalizados según sea necesario */
-    </style>
-    </head>
-    <body class="dashboard dashboard_1">
-    <!-- Contenido del formulario -->
-    <div class="container-fluid">
-<form action="ConsultaServlet" method="post">
+<div class="container-flui">
+    <div class="center">
+    <form action="ConsultaServlet" method="post">
 
     <div class="menu-section">
     
@@ -250,10 +247,19 @@
             <!-- Agrega más opciones de región si es necesario -->
         </select>
     </div>
+
     
     <!-- Botón Consultar -->
 <button id="btnConsultar">Consultar</button>
 </form>
+    </div>
+    </div>
+
+                             
+
+    
+    <!-- Contenido del formulario -->
+    
       <!-- jQuery -->
       <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
       <script src="js/script.js"></script>

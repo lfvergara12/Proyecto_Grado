@@ -1,3 +1,6 @@
+<%@ page import="java.sql.Connection, java.sql.Statement, java.sql.ResultSet, java.sql.SQLException" %>
+<%@ page import="conexionA.DBUtil" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -42,14 +45,14 @@
                <div class="sidebar_blog_1">
                   <div class="sidebar-header">
                      <div class="logo_section">
-                        <a href="index.html"><img class="logo_icon img-responsive" src="images/logo/logo_icon.png" alt="#" /></a>
+                        <a href="#"><img class="logo_icon img-responsive" src="images/logo/logo_icon.png" alt="#" /></a>
                      </div>
                   </div>
 
                   <div class="sidebar_user_info">
                      <div class="icon_setting"></div>
                      <div class="user_profle_side">
-                        <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg" alt="#" /></div>
+                        <div class="user_img"><img class="img-responsive" src="images/user3.png" alt="#" /></div>
                         <div class="user_info">
                          <% String nombre = (String) request.getSession().getAttribute("nombre");
                          out.print(nombre);
@@ -72,10 +75,10 @@
                      
 <!--                   </ul> -->
 					<ul class="list-unstyled components">
-					  <li class="active"><a href="users.jsp"><i class="fa fa-table purple_color2"></i><span>Tabla de Usuarios</span></a></li>
-					  <li ><a href="indexAdmin2.html" ><i class="fa fa-briefcase blue1_color"></i><span>Registros por prueba</span></a></li>
-					  <li><a href="indexAdmin3.html" ><i class="fa fa-bar-chart-o green_color"></i> <span>Listado de pruebas</span></a></li>
-					  <li><a href="indexAdmin4.html" ><i class="fa fa-briefcase blue1_color"></i><span>Subir archivos</span></a></li>
+					  <li class="active"><a href="indexAdmin.jsp"><i class="fa fa-table purple_color2"></i><span>CRUD usuarios</span></a></li>
+					  <li ><a href="listadoPrueba.jsp" ><i class="fa fa-briefcase blue1_color"></i><span>Listado de pruebas </span></a></li>
+					  <li><a href="limpiezaDatos.jsp" ><i class="fa fa-bar-chart-o green_color"></i> <span>Limpieza de datos</span></a></li>
+					  <li><a href="cargaAdm.jsp" ><i class="fa fa-briefcase blue1_color"></i><span>Subir reportes</span></a></li>
 					</ul>
                </div>
             </nav>
@@ -88,7 +91,7 @@
                      <div class="full">
                         <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
                         <div class="logo_section">
-                           <a href="indexAdmin.html"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a>
+                           <a href="indexAdmin.jsp"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a>
                         </div>
                         <div class="right_topbar">
                            <div class="icon_info">
@@ -96,16 +99,13 @@
                               <ul class="user_profile_dd">
                                  <li>
 	                                 		<a class="dropdown-toggle" data-toggle="dropdown">
-											   <img class="img-responsive rounded-circle" src="images/layout_img/user_img.jpg" alt="#" />
+											   <img class="img-responsive rounded-circle" src="images/user3.png" alt="#" />
 											   <span class="name_user">
 											      <% 
 											         out.print(nombre); %>
 											   </span>
 											</a> 
                                     <div class="dropdown-menu">
-                                       <a class="dropdown-item" href="profile.html">My Profile</a>
-                                       <a class="dropdown-item" href="settings.html">Settings</a>
-                                       <a class="dropdown-item" href="help.html">Help</a>
                                        <a class="dropdown-item" href="login.jsp"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
                                     </div>
                                  </li>
@@ -129,67 +129,69 @@
                   </div>
                </div>
 
-  <div class="counter_no" >
-  <div class="container">
-<%@ page import="java.sql.Connection, java.sql.Statement, java.sql.ResultSet, java.sql.SQLException" %>
-<%@ page import="conexionA.DBUtil" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<html>
+ 
+
+
 <head>
     <meta charset="UTF-8">
     <title>Lista de Usuarios</title>
 </head>
 <body>
-    <h1>Lista de Usuarios</h1>
-    
-    <table>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Email</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% 
-            try (Connection connection = DBUtil.getConnection()) {
-                String sql = "SELECT * FROM usuarios";
-                Statement statement = connection.createStatement();
-                ResultSet resultSet = statement.executeQuery(sql);
+    <div style="max-width: 700px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; border: 1px solid #ccc; border-radius: 5px;">
+        <h1 style="text-align: center;">Lista de Usuarios</h1>
+        
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Nombre</th>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Apellido</th>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Email</th>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Usuario</th>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% 
+                try (Connection connection = DBUtil.getConnection()) {
+                    String sql = "SELECT * FROM usuarios";
+                    Statement statement = connection.createStatement();
+                    ResultSet resultSet = statement.executeQuery(sql);
 
-                while (resultSet.next()) {
-                    int id = resultSet.getInt("id");
-                    nombre = resultSet.getString("nombre");
-                    String apellido = resultSet.getString("apellido");
-                    String email = resultSet.getString("email");
-            %>
-            <tr>
-                <td><%= nombre %></td>
-                <td><%= apellido %></td>
-                <td><%= email %></td>
-                <td>
-                    <a href="UserController?action=editUser&id=<%= id %>">Editar</a>
-                    <form action="UserController" method="post">
-                        <input type="hidden" name="action" value="deleteUser">
-                        <input type="hidden" name="id" value="<%= id %>">
-                        <button type="submit">Eliminar</button>
-                    </form>
-                </td>
-            </tr>
-            <% 
+                    while (resultSet.next()) {
+                        int id = resultSet.getInt("id");
+                        nombre = resultSet.getString("nombre");
+                        String apellido = resultSet.getString("apellido");
+                        String usuario = resultSet.getString("usuario");
+                        String email = resultSet.getString("email");
+                %>
+                <tr>
+                    <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><%= nombre %></td>
+                    <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><%= apellido %></td>
+                    <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><%= email %></td>
+                    <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><%= usuario %></td>
+                    <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">
+                        <a href="UserController?action=editUser&id=<%= id %>" style="text-decoration: none; color: #007bff;">Editar</a>
+                        <form action="UserController" method="post" style="display: inline;">
+                            <input type="hidden" name="action" value="deleteUser">
+                            <input type="hidden" name="id" value="<%= id %>">
+                            <button type="submit" style="background-color: #dc3545; color: #fff; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer;">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                <% 
+                    }
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
-                resultSet.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            %>
-        </tbody>
-    </table>
-    
-    <a href="crearUsuario.jsp">Crear Usuario</a>
+                %>
+            </tbody>
+        </table>
+        
+        <a href="crearUsuario.jsp" style="display: block; margin-top: 10px; text-align: center; color: #007bff;">Crear Usuario</a>
+    </div>
 </body>
-</html>
+
 
             </thead>
             <tbody class="table-content">

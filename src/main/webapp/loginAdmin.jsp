@@ -58,14 +58,13 @@
                            <label class="label_field">Password</label>
                            <input type="password" name="password" placeholder="Password" required />
                         </div>
-                        <div class="field">
-                           <label class="label_field hidden">hidden label</label>
-                           <a class="forgot" href="">Forgotten Password?</a>
-                        </div>
+                        <br>
+                        <br>
                         <div class="field margin_0">
-                           <label class="label_field hidden">hidden label</label>
-                           <button class="main_bt" style="margin-left:10%;">Iniciar Sesión</button>
-                        </div>
+						    <label class="label_field hidden">hidden label</label>
+						    <button class="main_bt" style="background-color: #007BFF; margin-left: 10%;">Iniciar Sesión</button>
+						</div>
+
                         <div class="field margin_0">
                            <label class="label_field hidden">hidden label</label>
                         </div>

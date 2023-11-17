@@ -1,6 +1,7 @@
-
+<%@ page import="java.sql.Connection, java.sql.Statement, java.sql.ResultSet, java.sql.SQLException" %>
+<%@ page import="conexionA.DBUtil" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-
 <html lang="en">
    <head>
       <!-- basic -->
@@ -19,8 +20,7 @@
       <!-- bootstrap css -->
       <link rel="stylesheet" href="css/bootstrap.min.css" />
       <!-- site css -->
-      <link rel="stylesheet" href="subir.css" />
-       <link rel="stylesheet" href="style.css" />
+      <link rel="stylesheet" href="style.css" />
       <link rel="stylesheet" href="styles2.css" />
       <link rel="stylesheet" href="stylePop.css" />
       <!-- responsive css -->
@@ -45,24 +45,26 @@
                <div class="sidebar_blog_1">
                   <div class="sidebar-header">
                      <div class="logo_section">
-                        <a href="index.html"><img class="logo_icon img-responsive" src="images/logo/logo_icon.png" alt="#" /></a>
+                        <a href="#"><img class="logo_icon img-responsive" src="images/logo/logo_icon.png" alt="#" /></a>
                      </div>
                   </div>
 
                   <div class="sidebar_user_info">
                      <div class="icon_setting"></div>
                      <div class="user_profle_side">
-                        <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg" alt="#" /></div>
+                        <div class="user_img"><img class="img-responsive" src="images/user3.png" alt="#" /></div>
                         <div class="user_info">
-                           <h6>John David</h6>
+                         <% String nombre = (String) request.getSession().getAttribute("nombre");
+                         out.print(nombre);
+							%>
                            <p><span class="online_animation"></span> Online</p>
                         </div>
                      </div>
                   </div>
                </div>
-
                <div class="sidebar_blog_2">
                   <h4>General</h4>
+                   
 <!--                   <ul class="list-unstyled components"> -->
                      
 <!--                      <li><a button id="toggle-paragraph"><i class="fa fa-table purple_color2"></i> <span>Tabla de Usuarios</span></li></a></button> -->
@@ -72,14 +74,13 @@
 <!--                      <li><a button id="toggle-paragraph3""><i class="fa fa-bar-chart-o green_color"></i> <span>Listado de pruebas</span></li></a></button> -->
                      
 <!--                   </ul> -->
-                <ul class="list-unstyled components">
-					  <li><a href="indexAdmin.html" ><i class="fa fa-table purple_color2"></i><span>Tabla de Usuarios</span></a></li>
-					  <li><a href="indexAdmin2.html" ><i class="fa fa-briefcase blue1_color"></i><span>Registros por prueba</span></a></li>
-					  <li><a href="indexAdmin3.html" ><i class="fa fa-bar-chart-o green_color"></i> <span>Listado de pruebas</span></a></li>
-					  <li  class="active"><a href="#"><i class="fa fa-briefcase blue1_color"></i><span>Subir archivos</span></a></li>
-					</ul>   
-					   
-				</div>
+					<ul class="list-unstyled components">
+					  <li class="active"><a href="indexAdmin.jsp"><i class="fa fa-table purple_color2"></i><span>CRUD usuarios</span></a></li>
+					  <li ><a href="listadoPruebas.jsp" ><i class="fa fa-briefcase blue1_color"></i><span>Listado de pruebas </span></a></li>
+					  <li><a href="limpiezaDatos.jsp" ><i class="fa fa-bar-chart-o green_color"></i> <span>Limpieza de datos</span></a></li>
+					  <li><a href="cargaAdm.jsp" ><i class="fa fa-briefcase blue1_color"></i><span>Subir reportes</span></a></li>
+					</ul>
+               </div>
             </nav>
             <!-- end sidebar -->
             <!-- right content -->
@@ -90,19 +91,22 @@
                      <div class="full">
                         <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
                         <div class="logo_section">
-                           <a href="indexAdmin.html"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a>
+                           <a href="indexAdmin.jsp"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a>
                         </div>
                         <div class="right_topbar">
                            <div class="icon_info">
                               
                               <ul class="user_profile_dd">
                                  <li>
-                                    <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="images/layout_img/user_img.jpg" alt="#" /><span class="name_user">John David</span></a>
+	                                 		<a class="dropdown-toggle" data-toggle="dropdown">
+											   <img class="img-responsive rounded-circle" src="images/user3.png" alt="#" />
+											   <span class="name_user">
+											      <% 
+											         out.print(nombre); %>
+											   </span>
+											</a> 
                                     <div class="dropdown-menu">
-                                       <a class="dropdown-item" href="profile.html">My Profile</a>
-                                       <a class="dropdown-item" href="settings.html">Settings</a>
-                                       <a class="dropdown-item" href="help.html">Help</a>
-                                       <a class="dropdown-item" href="#"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
+                                       <a class="dropdown-item" href="login.jsp"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
                                     </div>
                                  </li>
                               </ul>
@@ -127,56 +131,99 @@
 
   <div class="counter_no" >
   <div class="container">
-<div class="row">
-    <div class="col-md-10 col-md-offset-1 ">
-    <center><h2>Adjunte los archivos</h2></center>
-    <form action="/tu_servlet_url" method="POST" enctype="multipart/form-data">
-    <div class="menu-section">
-        <h3>Tipo de Análisis</h3>
-        <select id="selectTipoAnalisis" name="selectTipoAnalisis">
-            <option value="">Seleccionar Análisis</option>
-            <option value="descriptivo">Análisis Descriptivo</option>
-            <option value="predictivo">Análisis Predictivo</option>
-        </select>
-    </div>
 
-    <div class="menu-section">
-        <h3>Año</h3>
-        <select id="selectAnio" name="selectAnio">
-            <option value="">Seleccionar Año</option>
-            <option value="2017">2017</option>
-            <option value="2018">2018</option>
-            <option value="2019">2019</option>
-            <option value="2020">2020</option>
-            <option value="2021">2021</option>
-            <!-- Agrega más opciones de año si es necesario -->
-        </select>
-    </div>
 
-    <div class="menu-section">
-        <h3>Región</h3>
-        <select id="selectRegion" name="selectRegion">
-            <option value="">Seleccionar Región</option>
-            <option value="amazonica">Amazonica</option>
-            <option value="orinoquia">Orinoquia</option>
-            <option value="caribe">Caribe</option>
-            <option value="pacifica">Pacifica</option>
-            <option value="andina">Andina</option>
-            <!-- Agrega más opciones de región si es necesario -->
-        </select>
-    </div>
 
-    <div class="menu-section">
-        <h3>Archivo PDF</h3>
-        <input type="file" id="inputFile" name="inputFile">
-    </div>
 
-    <!-- Botón Agregar -->
-    <button id="btnAgregar" value="Agregar">Agregar</button>
-</form>
+        <div class="pagination">
+            <ul></ul>
+        </div>
+        <div class="container-popup-messages">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Consultas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Consultas</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Tipo de AnÃ¡lisis</th>
+                <th>AÃ±o</th>
+                <th>RegiÃ³n</th>
+                <th>Resultado Texto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% 
+            try (Connection connection = DBUtil.getConnection()) {
+                String sql = "SELECT * FROM consultas";
+                Statement statement = connection.createStatement();
+                ResultSet resultSet = statement.executeQuery(sql);
 
+                while (resultSet.next()) {
+                    String tipoAnalisis = resultSet.getString("tipo_analisis");
+                    int anio = resultSet.getInt("anio");
+                    String region = resultSet.getString("region");
+                    String resultadoTexto = resultSet.getString("resultado_texto");
+
+            %>
+            <tr>
+                <td><%= tipoAnalisis %></td>
+                <td><%= anio %></td>
+                <td><%= region %></td>
+                <td><%= resultadoTexto %></td>
+            </tr>
+            <% 
+                }
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            %>
+        </tbody>
+    </table>
+</body>
+        </div>
   </div>
 </div>
+
+                    <script src="dinamico.js"></script>
+                    <script src="script.js"></script>
                    
 
 
@@ -188,7 +235,15 @@
        <script src="app.js"></script>
       <!-- wow animation -->
       <script src="js/animate.js"></script>
-   
+      <!-- select country -->
+      <script src="js/bootstrap-select.js"></script>
+      <!-- owl carousel -->
+      <script src="js/owl.carousel.js"></script> 
+      <!-- chart js -->
+      <script src="js/Chart.min.js"></script>
+      <script src="js/Chart.bundle.min.js"></script>
+      <script src="js/utils.js"></script>
+      <script src="js/analyser.js"></script>
       <!-- nice scrollbar -->
       <script src="js/perfect-scrollbar.min.js"></script>
       <script>

@@ -79,7 +79,48 @@
             height: 70vh; /* Ajusta la altura del mapa según tu preferencia */
         }
     </style>
+<style>
+         body {
+        font-family: Arial, sans-serif; /* Cambia "Arial" por el tipo de fuente que desees */
+    }
+        /* Estilos para centrar el formulario */
+       body, html {
+            height: 100%;
+            margin: 0;
+        }
+    .page_title h2 {
+        font-size: 24px; /* Tamaño del texto del título */
+        margin: 0;
+    }
 
+
+        form {
+            width: 80%; /* Opcional: para que el formulario ocupe todo el ancho */
+            max-width: 400px; /* Ancho máximo del formulario */
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px; /* Borde redondeado */
+            
+        }
+
+        .menu-section {
+            margin-bottom: 20px;
+        }
+            button#btnConsultar {
+        display: block;
+        margin: 0 auto;
+         background-color: #007bff; /* Cambiar a azul */
+        color: #fff; /* Color del texto en el botón */
+    }
+     select, select option {
+        border-radius: 15px; 
+        center;/* Ajusta el valor según el nivel de ovalado deseado */
+    }
+
+        /* Agrega más estilos personalizados según sea necesario */
+    </style>
      
    <body class="dashboard dashboard_1">
       <div class="full_container">
@@ -157,29 +198,43 @@
                      <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
-                           <div class="center">
-                              <h2>Descargue PDF</h2>
-                              </div>
+                               <div class="center">
+                           
+                              <h2>¡Bienvenido! Seleccione las caracteristicas para el analisis</h2>
+                           </div>
                            </div>
                         </div>
                      </div>
                   </div>
                </div>
- 
-    <body class="dashboard dashboard_1">
-    <!-- Contenido del formulario -->
-    <div class="container-fluid">
-<div style="max-width: 700px; margin: 0 auto; padding: 20px; background-color: #f5f5f5; border: 1px solid #ccc; border-radius: 5px;">
-<h1 style="font-size: 24px; text-align: center; color: #007bff; margin-bottom: 20px;">Resultado de la Consulta</h1>
+                    
+  <div class="center">
+<form action="ConsultaS" method="post">        
 
-		<p style="font-size: 18px; text-align: center;"><%= request.getAttribute("resultadoTexto") %></p>
-		<br>
-		<!-- Estilo para el enlace de descarga de PDF -->
-		<p style="text-align: center;">
-        <a href="<%= request.getAttribute("rutaPDF") %>" style="background-color: #007bff; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px;" target="_blank">Descargar PDF</a>
-		</p>
+    <!-- Grupo de opciones para el año y grado -->
+    <div class="menu-section">
+        <h3>Grado</h3>
+        <select id="selectGrado" name="selectGrado">
+            <option value="">Seleccionar Grado</option>
+            <option value="tercero">Tercero</option>
+            <option value="quinto">Quinto</option>
+            <option value="noveno">Noveno</option>
+        </select>
+    </div>
+
+    <div class="menu-section">
+        <h3>Año</h3>
+        <select id="selectAnio" name="selectAnio">
+            <option value="">Seleccionar Año</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <!-- Agrega más opciones de año si es necesario -->
+        </select>
+    </div>
+
+    <button id="btnConsultar">Consultar</button>
+</form>
 </div>
-
       <!-- jQuery -->
       <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
       <script src="js/script.js"></script>
