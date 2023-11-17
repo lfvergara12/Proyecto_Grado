@@ -108,8 +108,9 @@
                <div class="sidebar_blog_2">
                   <h4>Escoge el tipo de prueba    
                   <ul class="list-unstyled components">
-                     <li class="active"><a href="index.jsp"><i class="fa fa-table purple_color2"></i><span>Prueba 11</span></a></li>
+                    <li class="active"><a href="index.jsp"><i class="fa fa-table purple_color2"></i><span>Prueba 11</span></a></li>
                      <li><a href="pruebas.jsp"><i class="fa fa-briefcase blue1_color"></i><span>Prueba 3 5 9</span></a></li>
+                     <li><a href="tableroDinamico.jsp"><i class="fa fa-briefcase green_color"></i><span>Tablero dinamico</span></a></li>
 
                   </ul>
                </div>
